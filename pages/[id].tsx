@@ -94,7 +94,7 @@ export default function Profile() {
                 <Button
                   color="primary"
                   variant="contained"
-                  href="https://api.blacklink.cc/users/contact/637803ebef0085585e874f01"
+                  href="https://api.blacklink.cc/v1/users/contact/637803ebef0085585e874f01"
                   target="_blank"
                 >
                   Save Contact
