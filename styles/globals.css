@@ -2,6 +2,12 @@ body {
   background-color: #000;
 }
 
+a,
+a:hover {
+  text-decoration: none;
+  color: #000;
+}
+
 .card {
   width: 350px;
   background-color: #efefef;
@@ -11,7 +17,8 @@ body {
 }
 
 .image img {
-  transition: all 0.5s;
+  object-fit: cover;
+  border-radius: 50%;
 }
 /* 
 .card:hover .image img {
