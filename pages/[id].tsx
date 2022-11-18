@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useState } from 'react';
 import { Button, Grid, IconButton } from '@mui/material';
-
+import { makeStyles } from '@mui/styles';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import BusinessIcon from '@mui/icons-material/Business';
@@ -45,13 +45,7 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-const styles = {
+const useStyles = makeStyles({
   largeIcon: {
     width: '100%',
     height: '100%',
@@ -62,9 +56,21 @@ const styles = {
     border: '1px solid grey',
     padding: 'auto',
   },
-};
+  flexGrow: {
+    flex: '1',
+  },
+  button: {
+    backgroundColor: '#1F0B30',
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: '#481a70',
+      color: '#fff',
+    },
+  },
+});
 
 export default function Profile() {
+  const classes = useStyles();
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -82,7 +88,7 @@ export default function Profile() {
       </Head>
 
       <main className="">
-        <div className="container mt-4 mb-4 p-3 d-flex justify-content-center">
+        <div className="container mt-1 mb-4 p-3 d-flex justify-content-center">
           <div className="card p-4">
             <div className="image d-flex flex-column justify-content-center align-items-center">
               <Image src="/jack.png" height="100" width="100" alt="test" />
@@ -93,7 +99,7 @@ export default function Profile() {
                 {' '}
                 <Button
                   color="primary"
-                  variant="contained"
+                  className={classes.button}
                   href="https://api.blacklink.cc/v1/users/contact/637803ebef0085585e874f01"
                   target="_blank"
                 >
@@ -153,32 +159,32 @@ export default function Profile() {
               >
                 <Grid item xs={3}>
                   <IconButton
-                    style={styles.iconButton}
+                    className={classes.iconButton}
                     color="primary"
                     href="https://www.linkedin.com/in/jacksonlamhk/"
                     target="_blank"
                   >
-                    <LinkedIn style={styles.largeIcon} />
+                    <LinkedIn className={classes.largeIcon} />
                   </IconButton>
                 </Grid>
                 <Grid item xs={3}>
-                  <IconButton style={styles.iconButton} color="primary">
-                    <Instagram style={styles.largeIcon} />
+                  <IconButton className={classes.iconButton} color="primary">
+                    <Instagram className={classes.largeIcon} />
                   </IconButton>
                 </Grid>
                 <Grid item xs={3}>
-                  <IconButton style={styles.iconButton} color="primary">
-                    <WhatsApp style={styles.largeIcon} />
+                  <IconButton className={classes.iconButton} color="primary">
+                    <WhatsApp className={classes.largeIcon} />
                   </IconButton>
                 </Grid>
                 <Grid item xs={3}>
-                  <IconButton style={styles.iconButton} color="primary">
-                    <Facebook style={styles.largeIcon} />
+                  <IconButton className={classes.iconButton} color="primary">
+                    <Facebook className={classes.largeIcon} />
                   </IconButton>
                 </Grid>
                 <Grid item xs={3}>
-                  <IconButton style={styles.iconButton} color="primary">
-                    <YouTube style={styles.largeIcon} />
+                  <IconButton className={classes.iconButton} color="primary">
+                    <YouTube className={classes.largeIcon} />
                   </IconButton>
                 </Grid>
               </Grid>
