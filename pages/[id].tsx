@@ -4,7 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Grid, IconButton } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import PhoneIcon from '@mui/icons-material/Phone';
@@ -19,6 +19,11 @@ import {
   YouTube,
 } from '@mui/icons-material';
 import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDetails } from 'state/ducks/user/actions';
+import { useRouter } from 'next/router';
+
+import Subscribe from 'components/Subscribe';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -38,7 +43,7 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component={'span'}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -70,14 +75,26 @@ const useStyles = makeStyles({
 });
 
 export default function Profile() {
+  const router = useRouter();
+  const { id } = router.query;
   const classes = useStyles();
   const [value, setValue] = useState(0);
+
+  const dispatch = useDispatch();
+  const { details } = useSelector((state: any) => state.user);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchDetails(id));
+    }
+  }, [dispatch, id]);
+
   return (
-    <div className="">
+    <>
       <Head>
         <title>BLACKLINK - The #1 Digital Business Card</title>
         <meta
@@ -88,113 +105,125 @@ export default function Profile() {
       </Head>
 
       <main className="">
-        <div className="container mt-1 mb-4 p-3 d-flex justify-content-center">
-          <div className="card p-4">
-            <div className="image d-flex flex-column justify-content-center align-items-center">
-              <Image src="/jack.png" height="100" width="100" alt="test" />
-              <span className="name mt-3">Jackson Lam</span>{' '}
-              <span className="idd">Founder & CEO</span>{' '}
-              <span className="idd">Kidos Tech</span>{' '}
-              <div className=" d-flex mt-2 mb-2">
-                {' '}
-                <Button
-                  color="primary"
-                  className={classes.button}
-                  href="https://api.blacklink.cc/v1/users/contact/637803ebef0085585e874f01"
-                  target="_blank"
-                >
-                  Save Contact
-                </Button>
-              </div>
-            </div>
-
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                textColor="secondary"
-                indicatorColor="secondary"
-                aria-label="basic tabs example"
-              >
-                <Tab label="Personal Info" style={{ fontSize: '9px' }} />
-                <Tab label="Social" style={{ fontSize: '9px' }} />
-                <Tab label="Documents" style={{ fontSize: '9px' }} />
-              </Tabs>
-            </Box>
-            <TabPanel value={value} index={0}>
-              <div className="gap-3 mt-3 icons d-flex flex-column">
-                {' '}
-                <Link href="tel:+85268883089">
-                  <span>
-                    <PhoneIcon />
-                    &nbsp;&nbsp;+852 6888-3089
-                  </span>
-                </Link>
-                <Link href="mailto:jackson@kidos.tech">
-                  <span>
-                    <EmailIcon />
-                    &nbsp;&nbsp;jackson@kidos.tech
-                  </span>
-                </Link>
-                <Link href="https://www.kidos.tech/" target="_blank">
-                  <span>
-                    <BusinessIcon />
-                    &nbsp;&nbsp;Kidos Tech
-                  </span>
-                </Link>
-                <Link href="https://www.kidos.tech/" target="_blank">
-                  <span>
-                    <PublicIcon />
-                    &nbsp;&nbsp;kidos.tech
-                  </span>
-                </Link>
-              </div>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-              <Grid
-                container
-                rowSpacing={1}
-                columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                className="text-center"
-              >
-                <Grid item xs={3}>
-                  <IconButton
-                    className={classes.iconButton}
+        {details ? (
+          <div className="container mt-1 mb-4 p-3 d-flex justify-content-center">
+            <Subscribe />
+            <div className="card p-4">
+              <div className="image d-flex flex-column justify-content-center align-items-center">
+                <Image
+                  src="/jack.png"
+                  height="100"
+                  width="100"
+                  alt="test"
+                  priority={true}
+                />
+                <span className="name mt-3">
+                  {details.firstName} {details.lastName}
+                </span>{' '}
+                <span className="idd">{details.title}</span>{' '}
+                <span className="idd">{details.organization}</span>{' '}
+                <div className=" d-flex mt-2 mb-2">
+                  <Button
                     color="primary"
-                    href="https://www.linkedin.com/in/jacksonlamhk/"
+                    className={classes.button}
+                    href="https://api.blacklink.cc/v1/users/contact/637803ebef0085585e874f01"
                     target="_blank"
                   >
-                    <LinkedIn className={classes.largeIcon} />
-                  </IconButton>
+                    Save Contact
+                  </Button>
+                </div>
+              </div>
+
+              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  textColor="secondary"
+                  indicatorColor="secondary"
+                  aria-label="basic tabs example"
+                >
+                  <Tab label="Personal Info" style={{ fontSize: '9px' }} />
+                  <Tab label="Social" style={{ fontSize: '9px' }} />
+                  <Tab label="Documents" style={{ fontSize: '9px' }} />
+                </Tabs>
+              </Box>
+              <TabPanel value={value} index={0}>
+                <div className="gap-3 mt-3 icons d-flex flex-column">
+                  {' '}
+                  <Link href={`tel:${details.phone}`}>
+                    <span>
+                      <PhoneIcon />
+                      &nbsp;&nbsp;{details.phone}
+                    </span>
+                  </Link>
+                  <Link href={`mailto:${details.email}`}>
+                    <span>
+                      <EmailIcon />
+                      &nbsp;&nbsp;{details.email}
+                    </span>
+                  </Link>
+                  <Link href={details.website} target="_blank">
+                    <span>
+                      <BusinessIcon />
+                      &nbsp;&nbsp;{details.organization}
+                    </span>
+                  </Link>
+                  <Link href={details.website} target="_blank">
+                    <span>
+                      <PublicIcon />
+                      &nbsp;&nbsp;{details.website}
+                    </span>
+                  </Link>
+                </div>
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                <Grid
+                  container
+                  rowSpacing={1}
+                  columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                  className="text-center"
+                >
+                  <Grid item xs={3}>
+                    <IconButton
+                      className={classes.iconButton}
+                      color="primary"
+                      href="https://www.linkedin.com/in/jacksonlamhk/"
+                      target="_blank"
+                    >
+                      <LinkedIn className={classes.largeIcon} />
+                    </IconButton>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <IconButton className={classes.iconButton} color="primary">
+                      <Instagram className={classes.largeIcon} />
+                    </IconButton>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <IconButton className={classes.iconButton} color="primary">
+                      <WhatsApp className={classes.largeIcon} />
+                    </IconButton>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <IconButton className={classes.iconButton} color="primary">
+                      <Facebook className={classes.largeIcon} />
+                    </IconButton>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <IconButton className={classes.iconButton} color="primary">
+                      <YouTube className={classes.largeIcon} />
+                    </IconButton>
+                  </Grid>
                 </Grid>
-                <Grid item xs={3}>
-                  <IconButton className={classes.iconButton} color="primary">
-                    <Instagram className={classes.largeIcon} />
-                  </IconButton>
-                </Grid>
-                <Grid item xs={3}>
-                  <IconButton className={classes.iconButton} color="primary">
-                    <WhatsApp className={classes.largeIcon} />
-                  </IconButton>
-                </Grid>
-                <Grid item xs={3}>
-                  <IconButton className={classes.iconButton} color="primary">
-                    <Facebook className={classes.largeIcon} />
-                  </IconButton>
-                </Grid>
-                <Grid item xs={3}>
-                  <IconButton className={classes.iconButton} color="primary">
-                    <YouTube className={classes.largeIcon} />
-                  </IconButton>
-                </Grid>
-              </Grid>
-            </TabPanel>
-            <TabPanel value={value} index={2}></TabPanel>
+              </TabPanel>
+              <TabPanel value={value} index={2}></TabPanel>
+            </div>
           </div>
-        </div>
+        ) : (
+          <></>
+        )}
       </main>
 
       <footer className=""></footer>
-    </div>
+    </>
   );
 }

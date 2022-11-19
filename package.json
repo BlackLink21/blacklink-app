@@ -14,13 +14,18 @@
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "@mui/styles": "^5.10.14",
     "@next/font": "latest",
+    "@reduxjs/toolkit": "^1.9.0",
+    "isomorphic-fetch": "^3.0.0",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "latest",
