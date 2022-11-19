@@ -122,7 +122,7 @@ export default function Profile() {
                   {details.firstName} {details.lastName}
                 </span>{' '}
                 <span className="idd">{details.title}</span>{' '}
-                <span className="idd">BLACKLINK by KidosTech</span>{' '}
+                <span className="idd">BLACKLINK</span>{' '}
                 <div className=" d-flex mt-2 mb-2">
                   <Button
                     color="primary"
@@ -165,7 +165,7 @@ export default function Profile() {
                   <Link href={details.website} target="_blank">
                     <span>
                       <BusinessIcon />
-                      &nbsp;&nbsp;BLACKLINK
+                      &nbsp;&nbsp;BLACKLINK by KidosTech
                     </span>
                   </Link>
                   <Link href={details.website} target="_blank">
