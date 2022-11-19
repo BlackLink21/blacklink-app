@@ -33,12 +33,8 @@ export default function Subscribe({ open, setOpen }) {
   return (
     <form>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Join Us</DialogTitle>
+        <DialogTitle>Join BLACKLINK Launch VIP</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To keep up with the BLACKLINK&#39;s latest news. please enter your
-            email address here. We will send updates occasionally.
-          </DialogContentText>
           <TextField
             autoFocus
             margin="dense"

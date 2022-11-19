@@ -171,7 +171,7 @@ export default function Profile() {
                   <Link href={details.website} target="_blank">
                     <span>
                       <PublicIcon />
-                      &nbsp;&nbsp;{details.website}
+                      &nbsp;&nbsp;kidos.tech
                     </span>
                   </Link>
                   <span className="text-secondary">
