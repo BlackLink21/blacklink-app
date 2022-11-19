@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 export default function Subscribe({ open, setOpen }) {
   const [email, setEmail] = React.useState('');
-
+const [message, setMessage] = React.useState('');
   const handleClose = () => {
     setOpen(false);
   };
@@ -26,7 +26,7 @@ export default function Subscribe({ open, setOpen }) {
       },
       method: 'POST',
     });
-    setOpen(false);
+    setMessage('Thank you for subscribing');
     setEmail('');
   };
 
@@ -34,6 +34,7 @@ export default function Subscribe({ open, setOpen }) {
     <form>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Join BLACKLINK Launch VIP</DialogTitle>
+        {message}
         <DialogContent>
           <TextField
             autoFocus
