@@ -253,7 +253,7 @@ export default function Profile() {
                   >
                     join
                   </Button>{' '}
-                  launch email list
+                  VIP launch list
                 </div>
               </div>
             </div>
