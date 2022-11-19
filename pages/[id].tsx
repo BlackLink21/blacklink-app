@@ -6,7 +6,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useEffect, useState } from 'react';
-import { Button, Grid, IconButton } from '@mui/material';
+import { Button, Divider, Grid, IconButton } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
@@ -165,7 +165,7 @@ export default function Profile() {
                   <Link href={details.website} target="_blank">
                     <span>
                       <BusinessIcon />
-                      &nbsp;&nbsp;BLACKLINK by KidosTech
+                      &nbsp;&nbsp;BLACKLINK
                     </span>
                   </Link>
                   <Link href={details.website} target="_blank">
@@ -239,9 +239,11 @@ export default function Profile() {
               </TabPanel>
               <TabPanel value={value} index={2}></TabPanel>
               <div className="text-center">
-                <span>BLACKLINK launching Dec 2022</span>
-                <br />
-                <span>
+                <div className="mb-2">
+                  <span>BLACKLINK launching Dec 2022</span>
+                </div>
+                <Divider />
+                <div className="mt-2">
                   <Button
                     onClick={(e) => {
                       setOpen(true);
@@ -252,7 +254,7 @@ export default function Profile() {
                     join
                   </Button>{' '}
                   launch email list
-                </span>
+                </div>
               </div>
             </div>
           </div>
