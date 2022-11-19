@@ -34,7 +34,7 @@ const [message, setMessage] = React.useState('');
     <form>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Join BLACKLINK Launch VIP</DialogTitle>
-        {message}
+        <div className='text-center'>{message}</div>
         <DialogContent>
           <TextField
             autoFocus
