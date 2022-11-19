@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Tabs from '@mui/material/Tabs';
@@ -79,7 +80,7 @@ export default function Profile() {
   const { id } = router.query;
   const classes = useStyles();
   const [value, setValue] = useState(0);
-
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const { details } = useSelector((state: any) => state.user);
 
@@ -106,8 +107,8 @@ export default function Profile() {
 
       <main className="">
         {details ? (
-          <div className="container mt-1 mb-4 p-3 d-flex justify-content-center">
-            <Subscribe />
+          <div className="container mt-1 mb-2 p-3 d-flex justify-content-center">
+            <Subscribe open={open} setOpen={setOpen} />
             <div className="card p-4">
               <div className="image d-flex flex-column justify-content-center align-items-center">
                 <Image
@@ -121,7 +122,7 @@ export default function Profile() {
                   {details.firstName} {details.lastName}
                 </span>{' '}
                 <span className="idd">{details.title}</span>{' '}
-                <span className="idd">{details.organization}</span>{' '}
+                <span className="idd">BLACKLINK by KidosTech</span>{' '}
                 <div className=" d-flex mt-2 mb-2">
                   <Button
                     color="primary"
@@ -133,7 +134,6 @@ export default function Profile() {
                   </Button>
                 </div>
               </div>
-
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs
                   value={value}
@@ -148,7 +148,7 @@ export default function Profile() {
                 </Tabs>
               </Box>
               <TabPanel value={value} index={0}>
-                <div className="gap-3 mt-3 icons d-flex flex-column">
+                <div className="gap-1 mt-3 icons d-flex flex-column">
                   {' '}
                   <Link href={`tel:${details.phone}`}>
                     <span>
@@ -165,7 +165,7 @@ export default function Profile() {
                   <Link href={details.website} target="_blank">
                     <span>
                       <BusinessIcon />
-                      &nbsp;&nbsp;{details.organization}
+                      &nbsp;&nbsp;BLACKLINK by KidosTech
                     </span>
                   </Link>
                   <Link href={details.website} target="_blank">
@@ -174,6 +174,10 @@ export default function Profile() {
                       &nbsp;&nbsp;{details.website}
                     </span>
                   </Link>
+                  <span className="text-secondary">
+                    <PublicIcon />
+                    &nbsp;&nbsp;blacklink.cc
+                  </span>
                 </div>
               </TabPanel>
               <TabPanel value={value} index={1}>
@@ -194,28 +198,62 @@ export default function Profile() {
                     </IconButton>
                   </Grid>
                   <Grid item xs={3}>
-                    <IconButton className={classes.iconButton} color="primary">
-                      <Instagram className={classes.largeIcon} />
-                    </IconButton>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <IconButton className={classes.iconButton} color="primary">
+                    <IconButton
+                      className={classes.iconButton}
+                      color="primary"
+                      href="https://api.whatsapp.com/send?phone=+85268883089"
+                      target="_blank"
+                    >
                       <WhatsApp className={classes.largeIcon} />
                     </IconButton>
                   </Grid>
                   <Grid item xs={3}>
-                    <IconButton className={classes.iconButton} color="primary">
+                    <IconButton
+                      className={classes.iconButton}
+                      color="primary"
+                      disabled
+                    >
+                      <Instagram className={classes.largeIcon} />
+                    </IconButton>
+                  </Grid>
+
+                  <Grid item xs={3}>
+                    <IconButton
+                      className={classes.iconButton}
+                      color="primary"
+                      disabled
+                    >
                       <Facebook className={classes.largeIcon} />
                     </IconButton>
                   </Grid>
                   <Grid item xs={3}>
-                    <IconButton className={classes.iconButton} color="primary">
+                    <IconButton
+                      className={classes.iconButton}
+                      color="primary"
+                      disabled
+                    >
                       <YouTube className={classes.largeIcon} />
                     </IconButton>
                   </Grid>
                 </Grid>
               </TabPanel>
               <TabPanel value={value} index={2}></TabPanel>
+              <div className="text-center">
+                <span>BLACKLINK launching Dec 2022</span>
+                <br />
+                <span>
+                  <Button
+                    onClick={(e) => {
+                      setOpen(true);
+                    }}
+                    variant="outlined"
+                    size="small"
+                  >
+                    join
+                  </Button>{' '}
+                  launch email list
+                </span>
+              </div>
             </div>
           </div>
         ) : (
@@ -223,7 +261,7 @@ export default function Profile() {
         )}
       </main>
 
-      <footer className=""></footer>
+      <footer className="text-center"></footer>
     </>
   );
 }

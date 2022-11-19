@@ -7,8 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function Subscribe() {
-  const [open, setOpen] = React.useState(true);
+export default function Subscribe({ open, setOpen }) {
   const [email, setEmail] = React.useState('');
 
   const handleClose = () => {
@@ -34,11 +33,11 @@ export default function Subscribe() {
   return (
     <form>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Join Us</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+            To keep up with the BLACKLINK&#39;s latest news. please enter your
+            email address here. We will send updates occasionally.
           </DialogContentText>
           <TextField
             autoFocus
@@ -56,7 +55,7 @@ export default function Subscribe() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={subscribe}>Subscribe</Button>
+          <Button onClick={subscribe}>Join</Button>
         </DialogActions>
       </Dialog>
     </form>
