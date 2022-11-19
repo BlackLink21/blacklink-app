@@ -1,6 +1,6 @@
 import { fetch } from '../utils';
 
-const baseUrl = 'http://localhost:4000/v1';
+const baseUrl = 'https://api.blacklink.cc/v1';
 
 const apiService = () => (next) => (action) => {
   const result = next(action);
