@@ -162,13 +162,19 @@ export default function Profile() {
                       &nbsp;&nbsp;{details.email}
                     </span>
                   </Link>
-                  <Link href={details.website} target="_blank">
+                  <Link
+                    href={details.website ? details.website : ''}
+                    target="_blank"
+                  >
                     <span>
                       <BusinessIcon />
                       &nbsp;&nbsp;BLACKLINK by KidosTech
                     </span>
                   </Link>
-                  <Link href={details.website} target="_blank">
+                  <Link
+                    href={details.website ? details.website : ''}
+                    target="_blank"
+                  >
                     <span>
                       <PublicIcon />
                       &nbsp;&nbsp;kidos.tech
