@@ -122,7 +122,7 @@ export default function Profile() {
                   {details.firstName} {details.lastName}
                 </span>{' '}
                 <span className="idd">{details.title}</span>{' '}
-                <span className="idd">BLACKLINK</span>{' '}
+                <span className="idd">BLACKPINKIUM</span>{' '}
                 <div className=" d-flex mt-2 mb-2">
                   <Button
                     color="primary"
@@ -168,7 +168,7 @@ export default function Profile() {
                   >
                     <span>
                       <BusinessIcon />
-                      &nbsp;&nbsp;BLACKLINK by KidosTech
+                      &nbsp;&nbsp;BLACKPINKIUM by KidosTech
                     </span>
                   </Link>
                   <Link
@@ -182,7 +182,7 @@ export default function Profile() {
                   </Link>
                   <span className="text-secondary">
                     <PublicIcon />
-                    &nbsp;&nbsp;blacklink.cc
+                    &nbsp;&nbsp;blackpinkium.com
                   </span>
                 </div>
               </TabPanel>
@@ -207,7 +207,7 @@ export default function Profile() {
                     <IconButton
                       className={classes.iconButton}
                       color="primary"
-                      href="https://api.whatsapp.com/send?phone=+85268883089"
+                      href="https://api.whatsapp.com/send?phone=85268883089"
                       target="_blank"
                     >
                       <WhatsApp className={classes.largeIcon} />
@@ -246,7 +246,7 @@ export default function Profile() {
               <TabPanel value={value} index={2}></TabPanel>
               <div className="text-center">
                 <div className="mb-2">
-                  <span>BLACKLINK launching Dec 2022</span>
+                  <span>BLACKPINKIUM launching Dec 2022</span>
                 </div>
                 <Divider />
                 <div className="mt-2">
