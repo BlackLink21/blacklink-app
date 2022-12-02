@@ -79,7 +79,7 @@ export default function Profile() {
   const router = useRouter();
   const { id } = router.query;
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const { details } = useSelector((state: any) => state.user);
@@ -109,7 +109,7 @@ export default function Profile() {
         {details ? (
           <div className="container mt-1 mb-2 p-3 d-flex justify-content-center">
             <Subscribe open={open} setOpen={setOpen} />
-            <div className="card p-4">
+            <div className="card">
               <div className="image d-flex flex-column justify-content-center align-items-center">
                 <Image
                   src="/jack.png"
@@ -127,7 +127,7 @@ export default function Profile() {
                   <Button
                     color="primary"
                     className={classes.button}
-                    href="https://api.blacklink.cc/v1/users/contact/637803ebef0085585e874f01"
+                    href={`https://api.blacklink.cc/v1/users/contact/${id}`}
                     target="_blank"
                   >
                     Save Contact
@@ -141,6 +141,7 @@ export default function Profile() {
                   textColor="secondary"
                   indicatorColor="secondary"
                   aria-label="basic tabs example"
+                  centered
                 >
                   <Tab label="Personal Info" style={{ fontSize: '9px' }} />
                   <Tab label="Social" style={{ fontSize: '9px' }} />
@@ -207,10 +208,17 @@ export default function Profile() {
                     <IconButton
                       className={classes.iconButton}
                       color="primary"
-                      href="https://api.whatsapp.com/send?phone=85268883089"
+                      href={`https://api.whatsapp.com/send?phone=${details.phone.slice(
+                        1
+                      )}`}
                       target="_blank"
                     >
-                      <WhatsApp className={classes.largeIcon} />
+                      <WhatsApp
+                        className={classes.largeIcon}
+                        style={{
+                          color: 'green',
+                        }}
+                      />
                     </IconButton>
                   </Grid>
                   <Grid item xs={3}>
@@ -244,7 +252,7 @@ export default function Profile() {
                 </Grid>
               </TabPanel>
               <TabPanel value={value} index={2}></TabPanel>
-              <div className="text-center">
+              {/* <div className="text-center">
                 <div className="mb-2">
                   <span>BLACKPINKIUM launching Dec 2022</span>
                 </div>
@@ -261,7 +269,7 @@ export default function Profile() {
                   </Button>{' '}
                   VIP launch list
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         ) : (
